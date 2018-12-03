@@ -1,0 +1,22 @@
+% canvas1 = uint8(zeros(10));
+% canvas2 = canvas1;
+% image1=uint8(magic(3));
+% canvas1(2:4,2:4)=image1;
+% image2=uint8(magic(3));
+% canvas2(3:5,3:5)=image2;
+% canvas = canvas1 + canvas2;
+% overlap = canvas1 & canvas2;
+% canvas(overlap) = canvas(overlap)/2;
+I1=magic(20);
+nbsize =9;
+nbpixel = floor(nbsize/2);
+I1 = padarray(I1,[nbpixel nbpixel],'replicate');
+temp = [];
+for i= 1:size(r1,1)    
+   x = r1(i) + nbpixel;
+   y = c1(i) + nbpixel;
+   nb1 = I1((x- nbpixel):(x + nbpixel), (y- nbpixel):(y + nbpixel));
+   fit1 = reshape(nb1, [1,nbsize.^2]);
+   fit1= cat(1, temp, fit1);
+   temp = fit1;  
+end
